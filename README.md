@@ -53,6 +53,25 @@ Key Learning Outcomes
 - Free-space overwriting can reduce the recoverability of deleted files on suitable storage media.
 - Sanitisation methods must be selected according to the storage technology, sensitivity of the information, and required level of assurance.
 
+Technical Understanding
+File Recovery
+Deleting a file does not necessarily erase its underlying contents immediately. Depending on the filesystem and storage conditions, recovery software may retrieve data that remains available after deletion.
+
+File Integrity Verification
+SHA-256 hashing was used to compare original test files with their recovered copies. Matching hashes provide strong evidence that the compared files have identical contents, but do not independently prove the history, authenticity, or chain of custody of those files.
+
+Media Sanitisation
+The Windows cipher /w:E:\ command was used to overwrite free space on the test drive. The subsequent Recuva test showed that the deleted files were no longer recoverable through that particular recovery attempt.
+
+This result is not proof that every physical storage area was sanitised. Media sanitisation requires consideration of the storage technology, inaccessible or remapped sectors, and the level of assurance required.
+
+Key Distinction
+- Recovery: investigates whether deleted data remains accessible.
+- Hash verification: compares file contents for integrity.
+- Sanitisation aims to make data inaccessible according to a defined level of assurance.
+
+These are related but distinct processes, and success in one does not automatically prove success in another.
+
 Limitations
 - This was a controlled lab using a Windows virtual machine and test data.
 - The recovery result reflects Recuva's behaviour in this experiment. It does not prove that recovery is impossible using every tool or technique.
