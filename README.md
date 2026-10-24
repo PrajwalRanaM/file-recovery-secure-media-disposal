@@ -63,6 +63,24 @@ Limitations
 Evidence
 Screenshots documenting the lab stages will be provided in the screenshots directory.
 
+Commands Used
+1. Calculate SHA-256 File Hashes
+PowerShell was used to calculate SHA-256 hashes for the original test files and their recovered copies.
+
+Get-FileHash "C:\path\to\file" -Algorithm SHA256
+
+Purpose: Compare the original file's hash with the recovered file's hash. Matching SHA-256 values provide strong evidence that the file contents are identical.
+Result:The hashes matched for the files tested in this lab.
+
+2. Overwrite Free Space
+The Windows cipher command was used to overwrite free space on the test drive, E:.
+
+cipher /w:E:\
+
+Purpose: Overwrite free space where remnants of deleted files may remain.
+Result: After the operation, Recuva could no longer recover the deleted test files in the recovery attempt performed for this lab.
+Important limitation: This command targets free space, not every area of the physical drive. The observed result does not prove that all data was irrecoverable using every possible method or that the entire device was securely sanitised.
+
 References
 - Lab guide: *Lab: File Recovery and Secure Media Disposal*.
 - Microsoft Learn: [cipher command reference](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cipher).
